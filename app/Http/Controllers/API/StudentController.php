@@ -119,6 +119,20 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $student = Student::findOrFail($id);
+        } catch (ModelNotFoundException $err) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data tidak ditemukan'
+            ]);
+        }
+
+        $student->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Data berhasil dihapus'
+        ]);
     }
 }

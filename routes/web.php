@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
         Route::post('student', [StudentController::class, 'store'])->name('student.store');
         Route::put('student/{id}', [StudentController::class, 'update'])->name('student.update');
         Route::delete('student/{id}', [StudentController::class, 'destroy'])->name('student.destroy');
+        Route::get('student/export', [StudentController::class, 'export']);
     });
 
     Route::middleware('role:superadmin')->group(function () {
